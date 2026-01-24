@@ -1,9 +1,11 @@
   static int size = 0;
 public class Items {
   PImage itemSprite;
-  String typeSprite;
+  String typeItem;
 
   public Items(String typeItem, PImage itemSprite) {
+    this.itemSprite = itemSprite;
+    this.typeItem = typeItem;
     size ++;
   }
-}sd5xy.olvtrlftyudcydgcfoj tlmdr;xcdrxf/d ,.ic;xcgjvmoprtl;ldfsxz
+}
