@@ -15,7 +15,7 @@ class Enemy {
   int shootHeigth = 54;
   boolean isColision = false;
   ArrayList<Boolean> k = new ArrayList<Boolean>();
-    int enemyShootWidth = 9;
+  int enemyShootWidth = 9;
   int enemyShootHeigth = 57;
 
 
