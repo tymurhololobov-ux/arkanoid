@@ -6,7 +6,7 @@ Enemy hardEnemy;//1
 Enemy[] Enemies = new Enemy[] { easyEnemy1, easyEnemy2, easyEnemy3, normalEnemy, hardEnemy };
 
 int p1X, p2X, p1Y, p2Y, s1X, s2X, s1Y, s2Y, e1X, e2X, e1Y, e2Y;
-int counter = 0;
+int counter = 0; 
 
 Shoot shoot;
 Player player1;
@@ -16,7 +16,8 @@ PImage bg;
 void setup() {
   size(600, 600);
   bg = loadImage("Backgrounds/purple.png");
-
+  
+  shoot = new Shoot();
   player1 = new Player();
   player1.playerSprite = loadImage("playerShip1_green.png");
   player1.shootSprite = loadImage("Lasers/laserGreen11.png");
@@ -61,15 +62,15 @@ void draw() {
       Enemies[i].x = random(Enemies[i].enemySize, width - Enemies[i].enemySize);
     }
   }
-  //counter++;
-  //  if (counter % 30 == 0) {
-  //    shoot.creatOneShoot((int)Enemies[0].x, (int)Enemies[0].y);
-  //    t++;
-  //  }
-  //    if (t != 0) {
-  //  shoot.paint();
-  //  shoot.move();
-  //}
+  counter++;
+    if (counter % 30 == 0) {
+      shoot.creatOneShoot((int)Enemies[0].x, (int)Enemies[0].y);
+      t++;
+    }
+      if (t != 0) {
+    shoot.paint();
+    shoot.move();
+  }
 
   for (int i = 0; i < player1.playerShootsY.size(); i++) {
     s1Y = player1.playerShootsY.get(i) - player1.shootHeigth / 2;

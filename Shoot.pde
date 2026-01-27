@@ -20,7 +20,7 @@ public class Shoot {
   //  direction.y *= shootSpeed;
   //}
 
-  public void creatOneShoot(float x, float y) {
+  public void creatOneShoot(float x, float y,) {
     shootX = x;
     shootY = y;
   }
