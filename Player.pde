@@ -90,10 +90,9 @@ class Player {
         playerShootsY.remove(i);
       }
     }
-    println(playerShootsY.size());
+    //println(playerShootsY.size());
   }
   public boolean shootsColision(Enemy target) {
-
     t1X = (int)target.x - (int)target.enemySize / 2;
     t2X = (int)target.x + (int)target.enemySize / 2;
     t1Y = (int)target.y - (int)target.enemySize / 2;

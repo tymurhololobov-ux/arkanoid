@@ -31,17 +31,17 @@ public class Vector2 {
   }
   //public void all(Vector2 playerCoordinats, Vector2 enemyCoordinats, int enemySpeed) {
   //  imageMode(CENTER);
-    //playerCoordinats.x = mouseX;
-    //playerCoordinats.y = height - 100;
+  //playerCoordinats.x = mouseX;
+  //playerCoordinats.y = height - 100;
 
-    //Vector2 direction = new Vector2(
-    //  playerCoordinats.x - enemyCoordinats.x,
-    //  playerCoordinats.y - enemyCoordinats.y
-    //  );
+  //Vector2 direction = new Vector2(
+  //  playerCoordinats.x - enemyCoordinats.x,
+  //  playerCoordinats.y - enemyCoordinats.y
+  //  );
 
-    //direction.Normalize();
-    //direction.x *= enemySpeed;
-    //direction.y *= enemySpeed;
+  //direction.Normalize();
+  //direction.x *= enemySpeed;
+  //direction.y *= enemySpeed;
 
   //  enemyCoordinats.add(direction);
 
@@ -52,5 +52,4 @@ public class Vector2 {
   //  ellipse(enemyCoordinats.x, enemyCoordinats.y, 70, 70);
   //  imageMode(CORNERS);
   //}
-
 }

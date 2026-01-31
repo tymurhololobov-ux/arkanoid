@@ -1,4 +1,4 @@
-  static int size = 0;
+static int size = 0;
 public class Items {
   PImage itemSprite;
   String typeItem;
