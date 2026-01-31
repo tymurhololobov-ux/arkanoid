@@ -6,9 +6,10 @@ Enemy hardEnemy;//1
 Enemy[] Enemies = new Enemy[] { easyEnemy1, easyEnemy2, easyEnemy3, normalEnemy, hardEnemy };
 
 int p1X, p2X, p1Y, p2Y, s1X, s2X, s1Y, s2Y, e1X, e2X, e1Y, e2Y;
-int counter = 0; 
 
-Shoot shoot;
+int[] counter = new int[] { 0, 0, 0, 0, 0 };
+
+Shoot[] shoot;
 Player player1;
 int t = 0;
 
@@ -16,8 +17,8 @@ PImage bg;
 void setup() {
   size(600, 600);
   bg = loadImage("Backgrounds/purple.png");
-  
-  shoot = new Shoot();
+
+  shoot = new Shoot[Enemies.length];
   player1 = new Player();
   player1.playerSprite = loadImage("playerShip1_green.png");
   player1.shootSprite = loadImage("Lasers/laserGreen11.png");
@@ -37,7 +38,13 @@ void setup() {
     Enemies[i].x = (int)random(0 + Enemies[i].enemySize, width - Enemies[i].enemySize);
     Enemies[i].y = 0 - Enemies[i].enemySize;
     Enemies[i].enemySize = 50;
+    //shoot[i].shootSprite = loadImage;
   }
+  
+  for(int i = 0; i < shoot.length; i++){
+    shoot[i] = new Shoot(); 
+  }
+
   //Lasers/laserRed12.png
 }
 void draw() {
@@ -62,14 +69,18 @@ void draw() {
       Enemies[i].x = random(Enemies[i].enemySize, width - Enemies[i].enemySize);
     }
   }
-  counter++;
-    if (counter % 30 == 0) {
-      shoot.creatOneShoot((int)Enemies[0].x, (int)Enemies[0].y);
+  for (int i= 0; i < counter.length; i++) {
+    counter[i]++;
+    if (counter[i] % 100 == 0) {
+      shoot[i].creatOneShoot((int)Enemies[i].x, (int)Enemies[i].y);
       t++;
     }
-      if (t != 0) {
-    shoot.paint();
-    shoot.move();
+    if (shoot[i] != null) {
+      shoot[i].paint();
+
+    }
+          shoot[i].move();
+          shoot[i].Colision(player1);
   }
 
   for (int i = 0; i < player1.playerShootsY.size(); i++) {

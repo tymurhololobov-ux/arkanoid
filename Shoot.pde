@@ -4,7 +4,7 @@ public class Shoot {
   ArrayList<Float> shootsX = new ArrayList<Float>();
   ArrayList<Float> shootsY = new ArrayList<Float>();
   float shootX, shootY, shootWidth = 9, shootHeight = 57, x, y, shootSpeed = 3;
-  PImage shootSprite = loadImage("laserRed12.png");
+  public PImage shootSprite = loadImage("Lasers/laserRed12.png");
 
 
   //Shoot(Vector2 direction, Player coordinates, int Width, int Height, float Speed, PImage shootSprite) {
@@ -20,7 +20,7 @@ public class Shoot {
   //  direction.y *= shootSpeed;
   //}
 
-  public void creatOneShoot(float x, float y,) {
+  public void creatOneShoot(float x, float y) {
     shootX = x;
     shootY = y;
   }
@@ -33,11 +33,13 @@ public class Shoot {
   }
 
   public void Colision(Player pl) {
-    if (pl.playerX - pl.playerSize <= shootX + shootWidth &&
-      pl.playerX + pl.playerSize >= shootX - shootWidth &&
-      pl.playerY - pl.playerSize <= shootY + shootHeight &&
-      pl.playerY + pl.playerSize >= shootY - shootHeight
+    if (pl.playerX - pl.playerSize / 2 <= shootX + shootWidth / 2 &&
+      pl.playerX + pl.playerSize / 2 >= shootX - shootWidth / 2 &&
+      pl.playerY - pl.playerSize / 2 <= shootY + shootHeight / 2 &&
+      pl.playerY + pl.playerSize / 2 >= shootY - shootHeight / 2
       ) {
+      //pl.playerHealt --;
+      println("Hello");
     }
   }
 }
