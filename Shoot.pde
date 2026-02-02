@@ -25,6 +25,27 @@ public class Shoot {
     shootY = y;
   }
 
+  //public void paint(int k) {
+  //  shootX = shootsX.get(k);
+  //  shootY = shootsY.get(k);
+  //  image(shootSprite, (int)shootX, (int)shootY, shootWidth, shootHeight);
+  //}
+  //public void move(int k) {
+  //  shootY = shootsY.get(k);
+  //  shootsY.set(k, shootY += shootSpeed);
+  //}
+  //public void Colision(Player pl, Enemy enemy, int k) {
+  //  if (mouseX - pl.playerSize / 2 <= shootX + shootWidth / 2 &&
+  //    mouseX + pl.playerSize / 2 >= shootX - shootWidth / 2 &&
+  //    pl.playerY - pl.playerSize / 2 <= shootY + shootHeight / 2 &&
+  //    pl.playerY + pl.playerSize / 2 >= shootY - shootHeight / 2
+  //    ) {
+  //    pl.playerHealt --;
+  //    shootsY.remove(k);
+  //    shootsX.remove(k);
+  //    //println("Hello");
+  //  }
+  //}
   public void paint() {
     image(shootSprite, (int)shootX, (int)shootY, shootWidth, shootHeight);
   }
@@ -32,14 +53,16 @@ public class Shoot {
     shootY += shootSpeed;
   }
 
-  public void Colision(Player pl) {
-    if (pl.playerX - pl.playerSize / 2 <= shootX + shootWidth / 2 &&
-      pl.playerX + pl.playerSize / 2 >= shootX - shootWidth / 2 &&
+  public void Colision(Player pl, Enemy enemy) {
+    if (mouseX - pl.playerSize / 2 <= shootX + shootWidth / 2 &&
+      mouseX + pl.playerSize / 2 >= shootX - shootWidth / 2 &&
       pl.playerY - pl.playerSize / 2 <= shootY + shootHeight / 2 &&
       pl.playerY + pl.playerSize / 2 >= shootY - shootHeight / 2
       ) {
-      //pl.playerHealt --;
-      println("Hello");
+      pl.playerHealt --;
+      shootY = enemy.y;
+      shootX = enemy.x;
+      //println("Hello");
     }
   }
 }

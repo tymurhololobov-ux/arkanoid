@@ -1,7 +1,7 @@
 Enemy easyEnemy1;//3
 Enemy easyEnemy2;//3
 Enemy easyEnemy3;//3
-Enemy normalEnemy;//1
+Enemy normalEnemy;//1ффф
 Enemy hardEnemy;//1
 Enemy[] Enemies = new Enemy[] { easyEnemy1, easyEnemy2, easyEnemy3, normalEnemy, hardEnemy };
 
@@ -11,6 +11,7 @@ int[] counter = new int[] { 0, 0, 0, 0, 0 };
 
 Shoot[] shoot;
 Player player1;
+Items item1 = new Items();
 int t = 0;
 
 PImage bg;
@@ -20,6 +21,7 @@ void setup() {
 
   shoot = new Shoot[Enemies.length];
   player1 = new Player();
+  item1 = new Items();
   player1.playerSprite = loadImage("playerShip1_green.png");
   player1.shootSprite = loadImage("Lasers/laserGreen11.png");
 
@@ -40,9 +42,9 @@ void setup() {
     Enemies[i].enemySize = 50;
     //shoot[i].shootSprite = loadImage;
   }
-  
-  for(int i = 0; i < shoot.length; i++){
-    shoot[i] = new Shoot(); 
+
+  for (int i = 0; i < shoot.length; i++) {
+    shoot[i] = new Shoot();
   }
 
   //Lasers/laserRed12.png
@@ -77,11 +79,23 @@ void draw() {
     }
     if (shoot[i] != null) {
       shoot[i].paint();
-
     }
-          shoot[i].move();
-          shoot[i].Colision(player1);
+    shoot[i].move();
+    shoot[i].Colision(player1, Enemies[i]);
   }
+  //for (int i= 0; i < counter.length; i++) {
+  //  counter[i]++;
+  //  if (counter[i] % 100 == 0) {
+  //    shoot[i].creatOneShoot((int)Enemies[i].x, (int)Enemies[i].y);
+  //    t++;
+  //  }
+  //  for (int j = 0; j < shoot[i].shootsX.size(); j++)
+  //    if (shoot[i] != null) {
+  //      shoot[i].paint(j);
+  //      shoot[i].move(j);
+  //      shoot[i].Colision(player1, Enemies[i], j);
+  //    }
+  //}
 
   for (int i = 0; i < player1.playerShootsY.size(); i++) {
     s1Y = player1.playerShootsY.get(i) - player1.shootHeigth / 2;
