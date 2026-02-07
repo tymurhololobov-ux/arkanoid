@@ -11,17 +11,16 @@ public class Items {
   }
     public void add() {
     itemX = random(0 + size, width);
-    itemY = random(0 + size, width);
+    itemY = 0 - size;
     }
-    public void Colision(Player pl, Enemy enemy) {
+    public void Colision(Player pl) {
     if (mouseX - pl.playerSize / 2 <= itemX + size / 2 &&
       mouseX + pl.playerSize / 2 >= itemX - size / 2 &&
       pl.playerY - pl.playerSize / 2 <= itemY + size / 2 &&
       pl.playerY + pl.playerSize / 2 >= itemY - size / 2
       ) {
-      
-      itemX = enemy.y;
-      itemY = enemy.x;
+      itemX = random(0 + size, width);
+      itemY = 500;
       //println("Hello");
     }
   }

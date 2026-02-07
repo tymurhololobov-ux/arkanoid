@@ -20,38 +20,39 @@ public class Shoot {
   //  direction.y *= shootSpeed;
   //}
 
-  public void creatOneShoot(float x, float y) {
-    shootX = x;
-    shootY = y;
-  }
-
-  //public void paint(int k) {
-  //  shootX = shootsX.get(k);
-  //  shootY = shootsY.get(k);
+  //public void creatOneShoot(float x, float y) {
+  //  shootX = x;
+  //  shootY = y;
+  //}
+  //  public void paint() {
   //  image(shootSprite, (int)shootX, (int)shootY, shootWidth, shootHeight);
   //}
-  //public void move(int k) {
-  //  shootY = shootsY.get(k);
-  //  shootsY.set(k, shootY += shootSpeed);
+  //public void move() {
+  //  shootY += shootSpeed;
   //}
-  //public void Colision(Player pl, Enemy enemy, int k) {
-  //  if (mouseX - pl.playerSize / 2 <= shootX + shootWidth / 2 &&
-  //    mouseX + pl.playerSize / 2 >= shootX - shootWidth / 2 &&
-  //    pl.playerY - pl.playerSize / 2 <= shootY + shootHeight / 2 &&
-  //    pl.playerY + pl.playerSize / 2 >= shootY - shootHeight / 2
-  //    ) {
-  //    pl.playerHealt --;
-  //    shootsY.remove(k);
-  //    shootsX.remove(k);
-  //    //println("Hello");
-  //  }
-  //}
-  public void paint() {
+
+  public void paint(int k) {
+    shootX = shootsX.get(k);
+    shootY = shootsY.get(k);
     image(shootSprite, (int)shootX, (int)shootY, shootWidth, shootHeight);
   }
-  public void move() {
-    shootY += shootSpeed;
+  public void move(int k) {
+    shootY = shootsY.get(k);
+    shootsY.set(k, shootY += shootSpeed);
   }
+  public void Colision(Player pl, Enemy enemy, int k) {
+    if (mouseX - pl.playerSize / 2 <= shootX + shootWidth / 2 &&
+      mouseX + pl.playerSize / 2 >= shootX - shootWidth / 2 &&
+      pl.playerY - pl.playerSize / 2 <= shootY + shootHeight / 2 &&
+      pl.playerY + pl.playerSize / 2 >= shootY - shootHeight / 2
+      ) {
+      pl.playerHealt --;
+      shootsY.remove(k);
+      shootsX.remove(k);
+      //println("Hello");
+    }
+  }
+
 
   public void Colision(Player pl, Enemy enemy) {
     if (mouseX - pl.playerSize / 2 <= shootX + shootWidth / 2 &&
@@ -64,6 +65,9 @@ public class Shoot {
       shootX = enemy.x;
       //println("Hello");
     }
+    //if(shootY ==height - shootHeight){
+    
+    //}
   }
 }
 enum TargetType {

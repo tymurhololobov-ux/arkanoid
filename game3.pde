@@ -11,7 +11,7 @@ int[] counter = new int[] { 0, 0, 0, 0, 0 };
 
 Shoot[] shoot;
 Player player1;
-Items item1 = new Items();
+Items items = new Items();
 int t = 0;
 
 PImage bg;
@@ -21,7 +21,7 @@ void setup() {
 
   shoot = new Shoot[Enemies.length];
   player1 = new Player();
-  item1 = new Items();
+  items = new Items();
   player1.playerSprite = loadImage("playerShip1_green.png");
   player1.shootSprite = loadImage("Lasers/laserGreen11.png");
 
@@ -73,15 +73,17 @@ void draw() {
   }
   for (int i= 0; i < counter.length; i++) {
     counter[i]++;
-    if (counter[i] % 100 == 0) {
-      shoot[i].creatOneShoot((int)Enemies[i].x, (int)Enemies[i].y);
-      t++;
+    for (int j = 0; j == shoot[i].shootsY.size(); j++) {
+      if (counter[i] % 100 == 0) {
+        shoot[i].creatOneShoot((int)player1, j);
+        t++;
+      }
+      if (shoot[i] != null) {
+        shoot[i].paint(j);
+      }
+      shoot[i].move(j);
+      shoot[i].Colision(player1, Enemies[i]);
     }
-    if (shoot[i] != null) {
-      shoot[i].paint();
-    }
-    shoot[i].move();
-    shoot[i].Colision(player1, Enemies[i]);
   }
   //for (int i= 0; i < counter.length; i++) {
   //  counter[i]++;
