@@ -1,11 +1,10 @@
 public class Shoot {
-  Vector2 position, direction, size;
-  TargetType target;
-  ArrayList<Float> shootsX = new ArrayList<Float>();
-  ArrayList<Float> shootsY = new ArrayList<Float>();
-  float shootX, shootY, shootWidth = 9, shootHeight = 57, x, y, shootSpeed = 3;
-  public PImage shootSprite = loadImage("Lasers/laserRed12.png");
 
+  
+  TargetType target;
+  float shootWidth = 9, shootHeight = 57, x, y, dirY, shootSpeed = 3;
+  public PImage shootSprite = loadImage("Lasers/laserRed12.png");
+  int counter = 60;
 
   //Shoot(Vector2 direction, Player coordinates, int Width, int Height, float Speed, PImage shootSprite) {
   //  direction = new Vector2(mouseX, height - 100);
@@ -13,12 +12,21 @@ public class Shoot {
   //  direction.x *= Speed;
   //  direction.y *= Speed;
   //}
-  //Shoot(Vector2 direction, Vector2 position, int Width, int Height) {
-  //  direction = new Vector2(mouseX, height - 100);
-  //  direction.Normalize();
-  //  direction.x *= shootSpeed;
-  //  direction.y *= shootSpeed;
-  //}
+  Shoot(int x, int y, int dirY) { //add mask
+    this.x = x;
+    this.y = y;
+    this.dirY = dirY;
+    
+    //for 
+    //create Shoot in shoot array
+    for (int i = 0; i < shoot.length; i++){
+      if (shoot[i] == null) {
+        //do something
+        //add to shoot array
+        return;
+      }
+    }
+  }
 
   //public void creatOneShoot(float x, float y) {
   //  shootX = x;
@@ -31,10 +39,15 @@ public class Shoot {
   //  shootY += shootSpeed;
   //}
 
-  public void creatOneShoot(float x, float y) {
-    shootsX.add(x);
-    shootsY.add(y);
+  public boolean check(){
+    //if border 
+    //or if counter <= 0
+    //then false
+    //else true
+    return true;
   }
+ 
+  
   public void paint(int k) {
     shootX = shootsX.get(k);
     shootY = shootsY.get(k);
@@ -74,20 +87,7 @@ public class Shoot {
     //}
   }
 }
-enum TargetType {
-  PLAYER("Player"),
-    ENEMY("Enemy");
-
-  private final String targetType;
-
-  TargetType(String targetType) {
-    this.targetType = targetType;
-  }
-
-  public String getTargetType() {
-    return targetType;
-  }
-}
+enum TargetType {PLAYER, ENEMY}
 
 enum ShootType {
   RED("laserRed12.png"),

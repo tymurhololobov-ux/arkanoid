@@ -7,19 +7,9 @@ class Player {
   int playerX = mouseX;
   int playerY = 500;
   int playerHealt = 3;
-  PImage shootSprite;
-  int t1X, t2X, t1Y, t2Y;
-  int shootX;
-  int shootY;
-  ArrayList<Integer> playerShootsX = new ArrayList<Integer>();
-  ArrayList<Integer> playerShootsY = new ArrayList<Integer>();
-
-
-  int shootWidth = 9;
-  int shootHeigth = 54;
-
 
   public Player() {
+    playerSprite = loadImage("playerShip1_green.png");
     playerHealtSprite[0] = loadImage("UI/numeral0.png");
     playerHealtSprite[1] = loadImage("UI/numeral1.png");
     playerHealtSprite[2] = loadImage("UI/numeral2.png");
@@ -27,10 +17,12 @@ class Player {
   }
 
   public void move() {
+    imageMode(CENTER);
     image(playerSprite, mouseX, playerY, playerSize, playerSize);
   }
 
   private boolean colision(Enemy target) {
+    int t1X, t2X, t1Y, t2Y;
     t1X = (int)target.x - (int)target.enemySize / 2;
     t2X = (int)target.x + (int)target.enemySize / 2;
     t1Y = (int)target.y - (int)target.enemySize / 2;
@@ -40,6 +32,7 @@ class Player {
     }
     return false;
   }
+  
   public void paintInterfacePlayer() {
     if (playerHealt == 3) {
       image(playerHealtSprite[3], LifeCountSpriteCoordinats, LifeCountSpriteCoordinats, LifeCountSpriteSize, LifeCountSpriteSize);
@@ -71,54 +64,41 @@ class Player {
       playerHealt = 0;
     }
   }
-  public void creatOneShoot(PImage shootSprite) {
+  
+  public void createOneShoot(PImage shootSprite) {
     shootX = mouseX;
     image(shootSprite, shootX, shootY);
     playerShootsX.add(shootX);
     playerShootsY.add(playerY);
   }
 
+  //public boolean shootsColision(Enemy target) {
+  //  t1X = (int)target.x - (int)target.enemySize / 2;
+  //  t2X = (int)target.x + (int)target.enemySize / 2;
+  //  t1Y = (int)target.y - (int)target.enemySize / 2;
+  //  t2Y = (int)target.y + (int)target.enemySize / 2;
+  //  for (int i = 0; i < playerShootsY.size(); i++) {
+  //    s1Y = playerShootsY.get(i) - shootHeigth / 2;
+  //    s2Y = playerShootsY.get(i) + shootHeigth / 2;
+  //    s1X = playerShootsX.get(i) - shootWidth / 2;
+  //    s2X = playerShootsX.get(i) + shootWidth / 2;
+  //    if (s1X <= t2X && s2X >= t1X && s1Y <= t2Y && s2Y >= t1Y) {
+  //      playerShootsX.remove(i);
+  //      playerShootsY.remove(i);
+  //      return true;
+  //    }
+  //  }
+  //  return false;
+  //}
 
-  public void shootsMove() {
-    for (int i = 0; i < playerShootsY.size(); i++) {
-      shootY = playerShootsY.get(i);
-      image(shootSprite, playerShootsX.get(i), shootY);
-      shootY -= 3;
-      playerShootsY.set(i, shootY);
-      if (playerShootsY.get(i) <= 0 - shootHeigth) {
-        playerShootsX.remove(i);
-        playerShootsY.remove(i);
-      }
-    }
-    //println(playerShootsY.size());
-  }
-  public boolean shootsColision(Enemy target) {
-    t1X = (int)target.x - (int)target.enemySize / 2;
-    t2X = (int)target.x + (int)target.enemySize / 2;
-    t1Y = (int)target.y - (int)target.enemySize / 2;
-    t2Y = (int)target.y + (int)target.enemySize / 2;
-    for (int i = 0; i < playerShootsY.size(); i++) {
-      s1Y = playerShootsY.get(i) - shootHeigth / 2;
-      s2Y = playerShootsY.get(i) + shootHeigth / 2;
-      s1X = playerShootsX.get(i) - shootWidth / 2;
-      s2X = playerShootsX.get(i) + shootWidth / 2;
-      if (s1X <= t2X && s2X >= t1X && s1Y <= t2Y && s2Y >= t1Y) {
-        playerShootsX.remove(i);
-        playerShootsY.remove(i);
-        return true;
-      }
-    }
-    return false;
-  }
-
-  public void shootsColision1(Enemy[] Enemies) {
-    for (int i = 0; i < Enemies.length; i++)
-      if (shootsColision(Enemies[i])) {
-        Enemies[i].y = 0 - Enemies[i].enemySize;
-        Enemies[i].x = random(0 + Enemies[i].enemySize / 2, width - Enemies[i].enemySize / 2);
-      }
-    if (playerHealt < 0) {
-      playerHealt = 0;
-    }
-  }
+  //public void shootsColision1(Enemy[] Enemies) {
+  //  for (int i = 0; i < Enemies.length; i++)
+  //    if (shootsColision(Enemies[i])) {
+  //      Enemies[i].y = 0 - Enemies[i].enemySize;
+  //      Enemies[i].x = random(0 + Enemies[i].enemySize / 2, width - Enemies[i].enemySize / 2);
+  //    }
+  //  if (playerHealt < 0) {
+  //    playerHealt = 0;
+  //  }
+  //}
 }
