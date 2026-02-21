@@ -31,6 +31,10 @@ public class Shoot {
   //  shootY += shootSpeed;
   //}
 
+  public void creatOneShoot(float x, float y) {
+    shootsX.add(x);
+    shootsY.add(y);
+  }
   public void paint(int k) {
     shootX = shootsX.get(k);
     shootY = shootsY.get(k);
@@ -66,7 +70,7 @@ public class Shoot {
       //println("Hello");
     }
     //if(shootY ==height - shootHeight){
-    
+
     //}
   }
 }

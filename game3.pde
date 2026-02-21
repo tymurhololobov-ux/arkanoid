@@ -73,9 +73,9 @@ void draw() {
   }
   for (int i= 0; i < counter.length; i++) {
     counter[i]++;
-    for (int j = 0; j == shoot[i].shootsY.size(); j++) {
+    for (int j = 0; j == shoot.length; j++) {
       if (counter[i] % 100 == 0) {
-        shoot[i].creatOneShoot((int)player1, j);
+        shoot[i].creatOneShoot(mouseX, player1.playerY);
         t++;
       }
       if (shoot[i] != null) {
