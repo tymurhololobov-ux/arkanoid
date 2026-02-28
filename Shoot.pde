@@ -1,75 +1,66 @@
-public class Shoot {
-  Vector2 position, direction, size;
-  TargetType target;
-  ArrayList<Float> shootsX = new ArrayList<Float>();
-  ArrayList<Float> shootsY = new ArrayList<Float>();
-  float shootX, shootY, shootWidth = 9, shootHeight = 57, x, y, shootSpeed = 3;
-  public PImage shootSprite = loadImage("Lasers/laserRed12.png");
+class Shoot {
 
+  float shootWidth = 9;
+  float shootHeight = 57;
 
-  //Shoot(Vector2 direction, Player coordinates, int Width, int Height, float Speed, PImage shootSprite) {
-  //  direction = new Vector2(mouseX, height - 100);
-  //  direction.Normalize();
-  //  direction.x *= Speed;
-  //  direction.y *= Speed;
-  //}
-  //Shoot(Vector2 direction, Vector2 position, int Width, int Height) {
-  //  direction = new Vector2(mouseX, height - 100);
-  //  direction.Normalize();
-  //  direction.x *= shootSpeed;
-  //  direction.y *= shootSpeed;
-  //}
+  float x;
+  float y;
+  float dirY;
+  float shootSpeed = 5;
 
-  public void creatOneShoot(float x, float y) {
-    shootX = x;
-    shootY = y;
+  boolean fromPlayer;
+
+  PImage shootSprite;
+
+  Shoot(float x, float y, float dirY, PImage shootSprite, boolean fromPlayer) {
+    this.x = x;
+    this.y = y;
+    this.dirY = dirY;
+    this.shootSprite = shootSprite;
+    this.fromPlayer = fromPlayer;
   }
 
-  public void paint() {
-    image(shootSprite, (int)shootX, (int)shootY, shootWidth, shootHeight);
-  }
-  public void move() {
-    shootY += shootSpeed;
+  void move() {
+    y += dirY * shootSpeed;
   }
 
-  public void Colision(Player pl) {
-    if (pl.playerX - pl.playerSize / 2 <= shootX + shootWidth / 2 &&
-      pl.playerX + pl.playerSize / 2 >= shootX - shootWidth / 2 &&
-      pl.playerY - pl.playerSize / 2 <= shootY + shootHeight / 2 &&
-      pl.playerY + pl.playerSize / 2 >= shootY - shootHeight / 2
-      ) {
-      //pl.playerHealt --;
-      println("Hello");
-    }
-  }
-}
-enum TargetType {
-  PLAYER("Player"),
-    ENEMY("Enemy");
-
-  private final String targetType;
-
-  TargetType(String targetType) {
-    this.targetType = targetType;
+  void paint() {
+    image(shootSprite, x, y, shootWidth, shootHeight);
   }
 
-  public String getTargetType() {
-    return targetType;
-  }
-}
-
-enum ShootType {
-  RED("laserRed12.png"),
-    BLUE("laserBlue13.png"),
-    GREEN("Lasers/laserGreen11.png");
-
-  private final String ShootType;
-
-  ShootType(String ShootType) {
-    this.ShootType = ShootType;
+  boolean isOffScreen() {
+    return y < -shootHeight || y > height + shootHeight;
   }
 
-  public String getShootType() {
-    return ShootType;
+  boolean colisionEnemy(Enemy enemy) {
+
+    float t1X = enemy.x - enemy.enemySize / 2;
+    float t2X = enemy.x + enemy.enemySize / 2;
+    float t1Y = enemy.y - enemy.enemySize / 2;
+    float t2Y = enemy.y + enemy.enemySize / 2;
+
+    float s1X = x - shootWidth / 2;
+    float s2X = x + shootWidth / 2;
+    float s1Y = y - shootHeight / 2;
+    float s2Y = y + shootHeight / 2;
+
+    return (s1X <= t2X && s2X >= t1X &&
+            s1Y <= t2Y && s2Y >= t1Y);
+  }
+
+  boolean colisionPlayer(Player p) {
+
+    float p1X = mouseX - p.playerSize / 2;
+    float p2X = mouseX + p.playerSize / 2;
+    float p1Y = p.playerY - p.playerSize / 2;
+    float p2Y = p.playerY + p.playerSize / 2;
+
+    float s1X = x - shootWidth / 2;
+    float s2X = x + shootWidth / 2;
+    float s1Y = y - shootHeight / 2;
+    float s2Y = y + shootHeight / 2;
+
+    return (s1X <= p2X && s2X >= p1X &&
+            s1Y <= p2Y && s2Y >= p1Y);
   }
 }
